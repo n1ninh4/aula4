@@ -3,6 +3,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Image, ScrollView} from 'react-native';
 
+import PrimeiroComponente from '../5-FUNDAMENTOS/Componentes/PrimeiroComponente'; 
+
 //função principal do componenete 
 export default function App() {
 //logica do meu componente 
@@ -19,10 +21,23 @@ function alerta () {
   //retorno é um codigo JSX (TEMPLATE) do que vai ser
   //renderizado na tela
   return ( 
+    
+  
 
     <ScrollView contentContainerStyle={styles.container}>
     <StatusBar style="auto" />
     <View style={styles.textBox}>
+
+      <PrimeiroComponente />
+      <PrimeiroComponente /> 
+      <PrimeiroComponente />
+      <PrimeiroComponente />
+      <PrimeiroComponente />
+      <PrimeiroComponente />
+      <PrimeiroComponente />
+      <PrimeiroComponente />
+      <PrimeiroComponente />
+      <PrimeiroComponente />
 
        <Text style={{ fontSize: 50}}>Luan Santana</Text>
        <Text style={{ fontSize: 30}}>{nome}</Text>
@@ -37,6 +52,8 @@ function alerta () {
       <View style={styles.buttonContainer}>
 
       <Button title='O MAIOR CANTOR DO BRASIL' onPress={alerta}></Button>
+       
+       
 
       </View>
 
