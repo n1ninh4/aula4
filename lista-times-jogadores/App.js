@@ -11,8 +11,8 @@ const times = [
     mascote: "Urubu",
     imagem: "https://i.pinimg.com/236x/16/db/d2/16dbd20fd582e025dc54cc3fbd1839c9.jpg",
     jogadores: [
-      { nome: "Gabriel Barbosa", numero: 9, imagem: "https://i.pinimg.com/474x/1d/9f/5d/1d9f5de58831c9913f925a7155bdc7da.jpg" },
-      { nome: "Arrascaeta", numero: 14, imagem: "https://i.pinimg.com/474x/cf/ad/d9/cfadd92de5e581ac5505e3d325f8b9b2.jpg" },
+      { nome: "Gerson", numero: 20, imagem: "https://i.pinimg.com/736x/8f/b6/2f/8fb62ff4849bec1680df470cf2a70e85.jpg" },
+      { nome: "Arrascaeta", numero: 14, imagem: "https://i.pinimg.com/736x/cd/9a/c6/cd9ac6174849b6210d77b3e6c98b8705.jpg" },
       { nome: "Everton Ribeiro", numero: 7, imagem: "https://i.pinimg.com/236x/39/1a/27/391a275fb7e0b018f2900f0f9fc9331b.jpg" },
       { nome: "David Luiz", numero: 23, imagem: "https://i.pinimg.com/474x/98/79/9b/98799b86107a87b79dc9b15cf778fa4a.jpg" },
       { nome: "Pedro", numero: 21, imagem: "https://i.pinimg.com/474x/79/e6/18/79e6185649fa3667b3ed3beef3e1ae94.jpg" },
