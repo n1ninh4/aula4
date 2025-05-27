@@ -13,9 +13,21 @@ export default function App() {
     <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Categorias' }} />
-          <Stack.Screen name="ListaProdutos" component={ListaProdutosScreen} options={{ title: 'Produtos' }} />
-          <Stack.Screen name="Produto" component={ProdutoScreen} options={{ title: 'Detalhes do Produto' }} />
+          <Stack.Screen 
+            name="Home" 
+            component={HomeScreen} 
+            options={{ title: 'Categorias' }} 
+          />
+          <Stack.Screen 
+            name="ListaProdutos" 
+            component={ListaProdutosScreen} 
+            options={({ route }) => ({ title: route.params.category })}
+          />
+          <Stack.Screen 
+            name="Produto" 
+            component={ProdutoScreen} 
+            options={{ title: 'Detalhes do Produto' }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

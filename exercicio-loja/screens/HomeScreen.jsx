@@ -8,15 +8,30 @@ export default function HomeScreen({ navigation }) {
 
   useEffect(() => {
     axios.get('https://dummyjson.com/products/category-list')
-      .then(response => setCategories(response.data))
-      .catch(error => console.error('Erro ao carregar categorias:', error));
+      .then(response => {
+        setCategories(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching categories:', error);
+      });
   }, []);
 
   const renderCategory = ({ item }) => (
-    <Card style={styles.card} onPress={() => navigation.navigate('ListaProdutos', { category: item })}>
+    <Card style={styles.card}>
       <Card.Content>
-        <Text variant="titleMedium">{item}</Text>
+        <Text variant="titleLarge" style={styles.categoryText}>
+          {item.charAt(0).toUpperCase() + item.slice(1)}
+        </Text>
       </Card.Content>
+      <Card.Actions>
+        <Button 
+          mode="contained" 
+          onPress={() => navigation.navigate('ListaProdutos', { category: item })}
+          style={styles.button}
+        >
+          Ver Produtos
+        </Button>
+      </Card.Actions>
     </Card>
   );
 
@@ -26,12 +41,30 @@ export default function HomeScreen({ navigation }) {
         data={categories}
         renderItem={renderCategory}
         keyExtractor={item => item}
+        contentContainerStyle={styles.list}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: '#f5f5f5' },
-  card: { marginBottom: 8, backgroundColor: '#fff' },
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  list: {
+    padding: 16,
+  },
+  card: {
+    marginBottom: 16,
+    elevation: 4,
+    borderRadius: 8,
+  },
+  categoryText: {
+    color: '#333',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#6200ee',
+  },
 });

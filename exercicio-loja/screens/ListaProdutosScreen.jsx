@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
-import { Card, Text, Avatar } from 'react-native-paper';
+import { Card, Text, Button, Avatar } from 'react-native-paper';
 import axios from 'axios';
 
 export default function ListaProdutosScreen({ route, navigation }) {
@@ -9,19 +9,33 @@ export default function ListaProdutosScreen({ route, navigation }) {
 
   useEffect(() => {
     axios.get(`https://dummyjson.com/products/category/${category}`)
-      .then(response => setProducts(response.data.products))
-      .catch(error => console.error('Erro ao carregar produtos:', error));
+      .then(response => {
+        setProducts(response.data.products);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
   }, [category]);
 
   const renderProduct = ({ item }) => (
-    <Card style={styles.card} onPress={() => navigation.navigate('Produto', { productId: item.id })}>
-      <Card.Content style={styles.cardContent}>
-        <Avatar.Image size={50} source={{ uri: item.thumbnail }} />
-        <View style={styles.textContainer}>
-          <Text variant="titleMedium">{item.title}</Text>
-          <Text variant="bodyMedium">R$ {item.price}</Text>
-        </View>
+    <Card style={styles.card}>
+      <Card.Title
+        title={item.title}
+        subtitle={`$${item.price}`}
+        left={(props) => <Avatar.Image {...props} source={{ uri: item.thumbnail }} />}
+      />
+      <Card.Content>
+        <Text variant="bodyMedium">{item.description.substring(0, 100)}...</Text>
       </Card.Content>
+      <Card.Actions>
+        <Button 
+          mode="contained" 
+          onPress={() => navigation.navigate('Produto', { productId: item.id })}
+          style={styles.button}
+        >
+          Ver Detalhes
+        </Button>
+      </Card.Actions>
     </Card>
   );
 
@@ -31,14 +45,27 @@ export default function ListaProdutosScreen({ route, navigation }) {
         data={products}
         renderItem={renderProduct}
         keyExtractor={item => item.id.toString()}
+        contentContainerStyle={styles.list}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: '#f5f5f5' },
-  card: { marginBottom: 8, backgroundColor: '#fff' },
-  cardContent: { flexDirection: 'row', alignItems: 'center' },
-  textContainer: { marginLeft: 16, flex: 1 },
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  list: {
+    padding: 16,
+  },
+  card: {
+    marginBottom: 16,
+    elevation: 4,
+    borderRadius: 8,
+  },
+  button: {
+    backgroundColor: '#6200ee',
+  },
 });
+
